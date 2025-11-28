@@ -1,0 +1,309 @@
+QUICK START GUIDE - BARANGAY MODULE
+===================================
+
+REQUIREMENTS
+============
+- XAMPP (PHP 8+, MySQL)
+- Web browser
+- Database: ejustice_portal
+
+INSTALLATION (5 MINUTES)
+========================
+
+1. DATABASE SETUP
+   □ Open phpMyAdmin: http://localhost/phpmyadmin
+   □ Select 'ejustice_portal' database
+   □ Go to Import tab
+   □ Choose file: sql/003_add_barangay_module.sql
+   □ Click "Go"
+   □ Wait for confirmation message
+
+2. SEED DEMO DATA
+   □ Open: http://localhost/ejustice_portal/public/seed_demo_users.php
+   □ Wait for success message
+   □ Note: This only runs once, then you'll see a message to delete the file
+
+3. LOGIN
+   □ Go to: http://localhost/ejustice_portal/public/
+   □ Login with:
+     Email: barangay@example.com
+     Password: password
+
+4. NAVIGATE TO BARANGAY MODULE
+   □ Click "🏘️ Barangay" dropdown in top navigation
+   □ Select "Dashboard" to see overview
+   □ Or "Record Entry" to create new complaint
+
+DEMO WORKFLOW (10 MINUTES)
+==========================
+
+TRY THIS:
+
+Step 1: Create a Complaint Record
+   □ Login as barangay@example.com
+   □ Click "🏘️ Barangay" → "Record Entry"
+   □ Fill in sample data:
+     - Complainant: Juan dela Cruz
+     - Respondent: Maria Santos
+     - Category: Civil
+     - Nature: Property dispute
+     - Click "Submit Record"
+
+Step 2: Track Mediation
+   □ Click on the complaint record you just created
+   □ In "Mediation Efforts" section:
+     - Mediation Date: Today
+     - Attendees: Both parties present
+     - Outcome: Ongoing
+     - Description: Initial discussion held
+     - Click "Record Mediation Effort"
+
+Step 3: Add More Effort
+   □ Add another mediation effort:
+     - Date: Tomorrow
+     - Outcome: Settled
+     - Description: Parties agreed to settlement terms
+     - Click "Record Mediation Effort"
+
+Step 4: Submit Summary
+   □ Scroll to "Mediation Summary & Recommendations"
+   □ Fill in:
+     - Punong Barangay Name: (any name)
+     - Summary: Parties successfully reached agreement
+     - Check both attendance boxes
+     - Update status: "Settled"
+     - Recommendations: Case resolved, settlement agreement to follow
+     - Click "Save Mediation Summary"
+
+Step 5: Generate Settlement Form
+   □ After saving, you'll see new buttons
+   □ Click "Generate Kasunduan"
+   □ Review the official form
+   □ Click "Print" to get printable version
+
+Step 6: Test Escalation
+   □ Go back to "Record Entry"
+   □ Create another complaint
+   □ Add multiple mediation efforts
+   □ In summary, set status to "To be Escalated"
+   □ Save
+   □ Click "Generate Certificate to File Action"
+   □ Click "Submit Form"
+   □ Check Dashboard - case will show in "Pending Escalations"
+
+Step 7: Check Dashboard
+   □ Click "🏘️ Barangay" → "Dashboard"
+   □ See all statistics updated:
+     - Cases this month
+     - Settlement rate
+     - Pending cases
+     - Recent activities
+
+USER ACCOUNTS
+=============
+
+Barangay Module Users:
+  1. Barangay Staff
+     Email: barangay@example.com
+     Password: password
+     Can: View, create, and manage records
+
+  2. Punong Barangay
+     Email: punongbarangay@example.com
+     Password: password
+     Can: Do everything staff can + approve settlements and escalate
+
+  3. Lupon Secretary
+     Email: lupon@example.com
+     Password: password
+     Can: Same as Punong Barangay
+
+System Admin:
+  Email: admin@example.com
+  Password: password
+  Can: Access all modules including audit logs
+
+Police Staff:
+  Email: police@example.com
+  Password: password
+  Can: View escalated cases in police blotter
+
+MAIN PAGES
+==========
+
+Barangay Module Pages:
+
+1. Barangay Dashboard
+   URL: /public/barangay_dashboard.php
+   Shows: Overview, statistics, pending cases, activities
+
+2. Record Entry
+   URL: /public/barangay_record_entry.php
+   Shows: Form to create complaints, list of records
+
+3. Mediation
+   URL: /public/barangay_mediation.php?record_id=X
+   Shows: Mediation tracking and summary
+
+4. Settlement Forms
+   URL: /public/barangay_settlement_form.php?record_id=X&form_type=KASUNDUAN
+   Shows: Official document generation and preview
+
+Other Related:
+
+5. Audit Logs (Admin view)
+   URL: /public/audit_logs.php
+   Shows: All system activity logs
+
+6. Main Dashboard
+   URL: /public/dashboard.php
+   Shows: User's overall system dashboard
+
+TROUBLESHOOTING
+===============
+
+Issue: "Access denied" error
+Fix: Make sure you're logged in. Try:
+  1. Logout completely (click "Logout")
+  2. Clear browser cookies
+  3. Login again as barangay@example.com
+
+Issue: "Barangay assignment not found"
+Fix: Run seed_demo_users.php again, or:
+  1. Go to phpMyAdmin
+  2. Check barangay_info table has records
+  3. Check barangay_users table links your user to barangay
+  4. Contact admin if needed
+
+Issue: Settlement form shows blank
+Fix: Make sure record exists and has complaint data:
+  1. Go to Record Entry page
+  2. Create a new record
+  3. Try form generation again
+
+Issue: Escalation didn't create police case
+Fix:
+  1. Check that police_staff user exists
+  2. Try refreshing the page
+  3. Check browser console for errors (F12)
+
+DATABASE RESET
+==============
+
+To start fresh:
+
+1. Delete the tables:
+   □ Go to phpMyAdmin
+   □ Select ejustice_portal database
+   □ Drop tables: barangay_*, (all starting with barangay_)
+
+2. Re-import schema:
+   □ Go to Import tab
+   □ Choose sql/003_add_barangay_module.sql
+   □ Click Go
+
+3. Re-seed data:
+   □ Visit seed_demo_users.php again
+
+FILES TO KNOW
+=============
+
+Core Files:
+  - public/barangay_record_entry.php - Complaint recording
+  - public/barangay_mediation.php - Mediation tracking
+  - public/barangay_settlement_form.php - Document generation
+  - public/barangay_dashboard.php - Statistics dashboard
+
+Backend:
+  - includes/barangay_escalation.php - Auto-escalation logic
+  - includes/header.php - Navigation menu (contains Barangay links)
+  - includes/audit.php - Audit logging functions
+
+Database:
+  - sql/003_add_barangay_module.sql - Schema creation
+
+Documentation:
+  - BARANGAY_MODULE_GUIDE.txt - Detailed guide
+  - IMPLEMENTATION_SUMMARY.txt - Feature overview
+  - README.txt - Main system documentation
+  - This file - Quick start
+
+USEFUL SHORTCUTS
+================
+
+From any page:
+  - Click "Barangay" dropdown → Quick navigate to all Barangay pages
+  - Click "Logout" → Safe logout
+  - Click "eJustice Portal" logo → Go to main dashboard
+
+Keyboard:
+  - F12 → Open browser developer tools (for troubleshooting)
+  - Ctrl+P → Print current page (works with form preview)
+  - Tab → Navigate form fields
+
+TIPS & TRICKS
+=============
+
+1. Date Fields
+   - Click on date field, calendar opens
+   - Can type date directly: YYYY-MM-DD format
+
+2. Forms
+   - Required fields marked with red *
+   - Form saved data stays even if page refreshes
+   - Use "Clear" button to reset form
+
+3. Tables
+   - Click table row to interact with record
+   - Hover over text to see full content if truncated
+   - Mobile-friendly swipe for navigation
+
+4. Print
+   - Non-printable elements (buttons, navigation) auto-hide
+   - Print preview shows what will actually print
+   - Use browser print settings for color/B&W
+
+5. Mobile
+   - Menu button (☰) appears on small screens
+   - Touch-friendly buttons and spacing
+   - Forms responsive on phone/tablet
+
+NEXT STEPS
+==========
+
+After you're comfortable with basic workflow:
+
+1. Try different user roles (logout and login as different users)
+
+2. Create realistic scenarios:
+   - Multiple mediation attempts
+   - Partial settlements
+   - Escalations to police
+
+3. Generate audit reports to see all activity
+
+4. Try printing forms to see professional output
+
+5. Read BARANGAY_MODULE_GUIDE.txt for deeper understanding
+
+6. Explore enhancement ideas in documentation
+
+SUPPORT
+=======
+
+For issues or questions:
+
+1. Check BARANGAY_MODULE_GUIDE.txt - Troubleshooting section
+2. Check IMPLEMENTATION_SUMMARY.txt - Technical details
+3. Review comments in PHP files
+4. Check phpMyAdmin → Event Monitor for database errors
+5. Open browser console (F12) for JavaScript errors
+
+Documentation Files:
+  - README.txt - Main system docs
+  - BARANGAY_MODULE_GUIDE.txt - Barangay-specific guide
+  - IMPLEMENTATION_SUMMARY.txt - Technical overview
+  - This file - Quick start
+
+---
+Ready to get started? Login and create your first complaint record!

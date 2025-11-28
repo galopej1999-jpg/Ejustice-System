@@ -1,0 +1,391 @@
+/* eJustice Portal - Court System Branding */
+
+:root {
+    --primary-blue: #003d82;
+    --secondary-gold: #d4a574;
+    --accent-red: #c0392b;
+    --light-gray: #f8f9fa;
+    --dark-text: #2c3e50;
+}
+
+/* Header Styling */
+.navbar-court {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #1a2554 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 0.75rem 0;
+}
+
+.court-header {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #1a2554 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.court-logo {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    display: inline-block;
+}
+
+.court-header-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+.court-header-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.25rem;
+}
+
+.court-info {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.5rem;
+}
+
+.seal-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.court-seal {
+    font-size: 3rem;
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+/* Navigation */
+.navbar-court .navbar-brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white !important;
+}
+
+.navbar-court .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-court .nav-link:hover {
+    color: var(--secondary-gold) !important;
+}
+
+.navbar-court .navbar-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Footer */
+.footer-court {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #1a2554 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    text-align: center;
+    border-top: 3px solid var(--secondary-gold);
+    font-size: 0.9rem;
+}
+
+.footer-court a {
+    color: var(--secondary-gold);
+    text-decoration: none;
+}
+
+.footer-court a:hover {
+    text-decoration: underline;
+}
+
+/* Badges and Labels */
+.badge-role {
+    font-weight: 600;
+    padding: 0.4rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.badge-judge {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+.badge-staff {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.badge-complainant {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Case Stage Labels */
+.stage-badge {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.stage-police {
+    background-color: #e7f3ff;
+    color: var(--primary-blue);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.stage-mtc {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.stage-rtc {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--accent-red);
+}
+
+/* Card Styling */
+.card-court {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card-court:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.card-court .card-header {
+    background: linear-gradient(135deg, var(--primary-blue), #1a2554);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    font-weight: 600;
+    border: none;
+}
+
+/* Document Table */
+.table-documents {
+    font-size: 0.95rem;
+}
+
+.table-documents thead {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+.table-documents tbody tr:hover {
+    background-color: var(--light-gray);
+}
+
+.document-status {
+    font-weight: 600;
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+}
+
+.document-encrypted {
+    background-color: #e7f3ff;
+    color: var(--primary-blue);
+}
+
+/* Buttons */
+.btn-court {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-court:hover {
+    background-color: #002d5a;
+    border-color: #002d5a;
+    color: white;
+}
+
+.btn-court-secondary {
+    background-color: var(--secondary-gold);
+    border-color: var(--secondary-gold);
+    color: white;
+}
+
+.btn-court-secondary:hover {
+    background-color: #b8935f;
+    border-color: #b8935f;
+    color: white;
+}
+
+/* Alert Styling */
+.alert-court {
+    border-radius: 8px;
+    border: none;
+    padding: 1.2rem;
+}
+
+.alert-court.alert-info {
+    background-color: #e7f3ff;
+    color: var(--primary-blue);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.alert-court.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.alert-court.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--accent-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .court-header-title {
+        font-size: 1.3rem;
+    }
+
+    .court-seal {
+        font-size: 2rem;
+    }
+
+    .seal-container {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Barangay Module Styling */
+.barangay-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.barangay-container .btn-group {
+    display: flex;
+}
+
+.barangay-container .stat-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+}
+
+/* Dropdown styling */
+.navbar-court .dropdown-menu {
+    background: linear-gradient(135deg, #1a2554 0%, #0f1726 100%);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-court .dropdown-item {
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.2s ease;
+}
+
+.navbar-court .dropdown-item:hover {
+    background-color: rgba(212, 165, 116, 0.2);
+    color: var(--secondary-gold);
+}
+
+.navbar-court .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Barangay Record Entry */
+.barangay-record-form {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+/* Status badges for barangay */
+.badge-barangay-active {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+}
+
+.badge-barangay-mediation {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.badge-barangay-settled {
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+}
+
+.badge-barangay-escalated {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+/* Mediation efforts styling */
+.mediation-effort {
+    border-left: 4px solid #2196F3;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.mediation-effort.successful {
+    border-left-color: #4CAF50;
+    background: #f1f8e9;
+}
+
+.mediation-effort.unsuccessful {
+    border-left-color: #f44336;
+    background: #ffebee;
+}
+
+/* Settlement form styling */
+.settlement-form {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.settlement-form .form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.settlement-form .signature-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Print Styles */
+@media print {
+    .navbar-court,
+    .footer-court,
+    .btn,
+    .alert,
+    .non-printable {
+        display: none;
+    }
+
+    .court-header {
+        page-break-after: avoid;
+    }
+    
+    .barangay-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .form-preview {
+        page-break-after: always;
+    }
+}

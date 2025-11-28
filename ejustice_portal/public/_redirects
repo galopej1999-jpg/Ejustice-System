@@ -1,0 +1,13 @@
+# Netlify Redirects Configuration
+# Proxy API and backend routes to Railway PHP backend
+# This file ensures requests to /api, /public, /includes, etc. go to your Railway backend
+# while static assets (JS, CSS, images) are served from Netlify CDN
+
+# Redirect all backend routes to Railway backend
+# Replace RAILWAY_BACKEND_URL with your actual Railway app URL (e.g., https://ejustice-portal-prod.railway.app)
+/*  RAILWAY_BACKEND_URL/:splat  200
+
+# If you have static assets in a specific folder, uncomment and adjust:
+# /css/*    /css/:splat  200
+# /js/*     /js/:splat   200
+# /images/* /images/:splat 200

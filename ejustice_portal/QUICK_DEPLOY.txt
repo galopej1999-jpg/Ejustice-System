@@ -1,0 +1,138 @@
+QUICK START: Netlify + Railway Deployment
+==========================================
+
+Pre-Deploy Checklist (5 minutes)
+──────────────────────────────────
+
+1. Generate encryption key:
+   
+   openssl rand -hex 32
+   
+   (Copy the output; you'll need it for Railway)
+
+2. Ensure repo is ready:
+   - config/config.php ✅ (now reads env vars)
+   - config/db.php ✅ (now reads DATABASE_URL)
+   - .env.example ✅ (created)
+   - netlify.toml ✅ (created)
+   - public/_redirects ✅ (created)
+
+3. Verify all SQL migrations are in sql/ folder:
+   - sql/ejustice_portal.sql
+   - sql/002_add_audit_logs.sql
+   - sql/003_add_barangay_module.sql
+   - sql/004_add_barangay_case_routing.sql
+
+Deploy Backend (Railway): 10 minutes
+────────────────────────────────────
+
+1. Go to railway.app → Sign up/Login
+2. New Project → Import from GitHub
+3. Select ejustice_portal repo
+4. Add Service → MySQL
+5. Set Variables:
+   - DOC_ENC_KEY: [paste from step above]
+   - APP_ENV: production
+   - APP_DEBUG: false
+6. Deploy (auto happens; wait 2-5 min)
+7. Once deployed, copy the Railway app URL (e.g., https://ejustice-portal-xyz.railway.app)
+
+Run Database Migrations: 5 minutes
+──────────────────────────────────
+
+Option A (easiest): Use phpMyAdmin
+- Railway dashboard → MySQL service → Open phpMyAdmin
+- Import sql/ejustice_portal.sql
+- Import sql/002_add_audit_logs.sql
+- Import sql/003_add_barangay_module.sql
+- Import sql/004_add_barangay_case_routing.sql
+
+Option B: Use MySQL CLI (if you have it locally)
+- Get Railway DB credentials from Variables
+- Run: mysql -h [host] -u [user] -p[password] ejustice_portal < sql/ejustice_portal.sql
+- Repeat for other SQL files
+
+Deploy Frontend (Netlify): 10 minutes
+─────────────────────────────────────
+
+1. Go to netlify.com → Sign up/Login
+2. New site → Import from GitHub
+3. Select ejustice_portal repo
+4. Build settings:
+   - Build command: (leave empty)
+   - Publish directory: public
+5. Deploy
+6. **IMPORTANT**: In your repo, update these files:
+   
+   netlify.toml:
+     Line 16: Replace RAILWAY_BACKEND_URL with your Railway URL
+   
+   public/_redirects:
+     Line 7: Replace RAILWAY_BACKEND_URL with your Railway URL
+   
+   Example if Railway URL is https://ejustice-portal-prod.railway.app:
+   
+   /*  https://ejustice-portal-prod.railway.app/:splat  200
+
+7. Commit and push changes
+8. Netlify auto-redeploys
+
+Test: 5 minutes
+───────────────
+
+1. Go to your Netlify URL (or custom domain)
+2. Should see login page
+3. Login with: admin@example.com / password
+4. Try:
+   - File a case
+   - View in Barangay
+   - Add mediation effort
+   - Generate CFA
+   - Check escalation to police
+   - Upload and view document
+
+If anything fails, check:
+- Railway logs: Railway dashboard → Logs tab
+- Netlify logs: Netlify dashboard → Deploys → Deploy log
+- Browser console: F12 → Console tab (check for errors)
+
+Common Issues & Fixes
+─────────────────────
+
+❌ "Database connection failed"
+   → Check DATABASE_URL is set in Railway Variables
+   → Ensure MySQL service is running
+
+❌ "Redirects not working; 404"
+   → Check netlify.toml: RAILWAY_BACKEND_URL replaced?
+   → Check public/_redirects: RAILWAY_BACKEND_URL replaced?
+   → Redeploy after edits
+
+❌ "Login page appears but login fails"
+   → Check Railway logs for PHP errors
+   → Verify migrations imported successfully
+
+❌ "File uploads fail"
+   → Check storage/documents/ exists
+   → Verify DOC_ENC_KEY set correctly in Railway
+
+Full Deployment Guide
+─────────────────────
+See DEPLOYMENT_NETLIFY_RAILWAY.md for detailed steps, troubleshooting, and architecture.
+
+Done! Your app is now live! 🎉
+─────────────────────────────
+
+Your app is accessible at:
+- Netlify URL: https://[netlify-site-name].netlify.app
+- Or your custom domain (if configured)
+
+All requests proxy to Railway backend automatically.
+
+Questions?
+- Railway docs: docs.railway.app
+- Netlify docs: docs.netlify.com
+- This repo: See DEPLOYMENT_NETLIFY_RAILWAY.md
+
+---
+Deployed: November 28, 2025
